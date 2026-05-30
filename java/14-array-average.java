@@ -7,3 +7,23 @@ o Prompt the user to enter the number of elements.
 o Read the elements into an array.
 o Calculate and display the sum and average.
 */
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        int sum = 0;
+        for (int num : arr) {
+            sum += num;
+        }
+        System.out.println("Sum: " + sum);
+        double average = (double) sum / n;
+        System.out.println("Average: " + average);
+        sc.close();
+    }
+}

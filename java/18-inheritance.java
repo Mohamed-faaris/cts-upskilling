@@ -7,3 +7,30 @@ o Animal class should have a method makeSound().
 o Dog class should override makeSound() to print "Bark".
 o Instantiate both classes and call their methods.
 */
+
+class Animal {
+    void makeSound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println("Bark");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Animal animal = new Animal();
+        Dog dog = new Dog();
+        Animal animalDog = new Dog(); 
+        // This will cause a ClassCastException at runtime
+        // Dog dogAnimal = new Animal();
+        
+        animal.makeSound();
+        dog.makeSound();   
+        animalDog.makeSound();
+    }
+}

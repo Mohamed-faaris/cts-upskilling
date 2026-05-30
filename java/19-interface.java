@@ -7,3 +7,28 @@ o Implement the interface in classes Guitar and Piano.
 o Each class should provide its own implementation of play().
 o Instantiate the classes and call the method.
 */
+
+interface Playable {
+    void play();
+}
+class Guitar implements Playable {
+    @Override
+    public void play() {
+        System.out.println("Playing the guitar");
+    }
+}
+class Piano implements Playable {
+    @Override
+    public void play() {
+        System.out.println("Playing the piano");
+    }
+}
+class Main {
+    public static void main(String[] args) {    
+        Playable guitar = new Guitar();
+        Playable piano = new Piano();
+        
+        guitar.play();
+        piano.play();
+    }
+}

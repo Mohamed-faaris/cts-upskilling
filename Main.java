@@ -1,18 +1,19 @@
-/*
-33. Transaction Handling in JDBC
-• Objective: Use JDBC transactions.
-• Task: Simulate a money transfer between two accounts.
-• Instructions:
-o Create accounts table with balances.
-o Implement a transfer method with Connection.setAutoCommit(false).
-o Commit if both debit and credit succeed, else rollback.
-*/
 import java.sql.*;
+
 class Main {
     private static String url = "jdbc:sqlite:try.db";
 
     public static void main(String[] args) {
         transferMoney(1, 2, 100);
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM accounts");
+            while (rs.next()) {
+                System.out.println(rs.getInt("id") + " | " + rs.getString("name") + " | " + rs.getDouble("balance"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public static void transferMoney(int fromAccountId, int toAccountId, double amount) {
