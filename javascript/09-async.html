@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async JS - Mock Event API</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 600px; margin: 20px auto; padding: 0 16px; }
+        .spinner { display: none; text-align: center; padding: 20px; font-size: 1.2rem; color: #666; }
+        .event-card { padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; }
+        .error { color: red; padding: 12px; }
+    </style>
+</head>
+<body>
+    <h2>Async Event Loading</h2>
+    <button id="loadBtn">Load Events</button>
+    <div class="spinner" id="spinner">Loading...</div>
+    <div id="output"></div>
+
+    <script>
+        /*
+        9. Async JS, Promises, Async/Await
+        Scenario: Fetch event data from a mock API.
+        Objective: Use asynchronous logic for remote operations.
+        Task:
+        • Fetch events from a mock JSON endpoint
+        • Use .then() and .catch() to handle results
+        • Rewrite using async/await and show loading spinner
+        */
+
+        const mockEvents = [
+            { name: "Summer Music Fest", date: "2024-07-15", seats: 50 },
+            { name: "Art Workshop", date: "2024-08-01", seats: 30 },
+            { name: "Jazz Night", date: "2024-09-10", seats: 20 }
+        ];
+
+        function fetchMockEvents() {
+            return new Promise((resolve) => {
+                setTimeout(() => resolve(mockEvents), 1500);
+            });
+        }
+
+        const output = document.getElementById('output');
+        const spinner = document.getElementById('spinner');
+
+        function displayEvents(events) {
+            output.innerHTML = '<h3>Loaded Events</h3>';
+            events.forEach(e => {
+                const div = document.createElement('div');
+                div.className = 'event-card';
+                div.textContent = `${e.name} - ${e.date} (${e.seats} seats)`;
+                output.appendChild(div);
+            });
+        }
+
+        // .then() / .catch() approach
+        function loadWithThen() {
+            spinner.style.display = 'block';
+            output.innerHTML = '';
+            fetchMockEvents()
+                .then(events => {
+                    displayEvents(events);
+                })
+                .catch(err => {
+                    output.innerHTML = `<div class="error">Error: ${err.message}</div>`;
+                })
+                .finally(() => {
+                    spinner.style.display = 'none';
+                });
+        }
+
+        // async/await approach
+        async function loadWithAsync() {
+            spinner.style.display = 'block';
+            output.innerHTML = '';
+            try {
+                const events = await fetchMockEvents();
+                displayEvents(events);
+            } catch (err) {
+                output.innerHTML = `<div class="error">Error: ${err.message}</div>`;
+            } finally {
+                spinner.style.display = 'none';
+            }
+        }
+
+        document.getElementById('loadBtn').onclick = loadWithAsync;
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects - Event Model</title>
+</head>
+<body>
+    <h2>Event Objects Demo</h2>
+    <div id="output"></div>
+
+    <script>
+        /*
+        5. Objects and Prototypes
+        Scenario: Each event is an object with properties and methods.
+        Objective: Model real-world entities using objects.
+        Task:
+        • Define Event constructor or class
+        • Add checkAvailability() to prototype
+        • List object keys and values using Object.entries()
+        */
+
+        class Event {
+            constructor(name, date, seats, category) {
+                this.name = name;
+                this.date = date;
+                this.seats = seats;
+                this.category = category;
+            }
+
+            checkAvailability() {
+                return this.seats > 0;
+            }
+        }
+
+        const events = [
+            new Event("Summer Music Fest", "2024-07-15", 100, "Music"),
+            new Event("Art Workshop", "2024-08-01", 0, "Art"),
+            new Event("Jazz Night", "2024-09-10", 50, "Music")
+        ];
+
+        const output = document.getElementById('output');
+        output.innerHTML = '<h3>Event Details</h3>';
+
+        events.forEach(event => {
+            const div = document.createElement('div');
+            div.style.margin = '10px 0';
+            div.style.padding = '10px';
+            div.style.border = '1px solid #ccc';
+
+            let info = `<strong>${event.name}</strong><br>`;
+            info += `Date: ${event.date}<br>`;
+            info += `Available: ${event.checkAvailability() ? 'Yes' : 'No'}<br>`;
+
+            // Object.entries() demo
+            info += '<br><em>All properties:</em><br>';
+            for (const [key, value] of Object.entries(event)) {
+                if (typeof value !== 'function') {
+                    info += `${key}: ${value}<br>`;
+                }
+            }
+
+            div.innerHTML = info;
+            output.appendChild(div);
+        });
+    </script>
+</body>
+</html>

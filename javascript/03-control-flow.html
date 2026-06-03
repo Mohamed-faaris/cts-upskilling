@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Control Flow - Event Registration</title>
+    </head>
+    <body>
+        <div id="event-list"></div>
+
+        <script>
+            /*
+            3. Conditionals, Loops, and Error Handling
+            Scenario: Only show valid events and limit registrations.
+            Objective: Apply conditions and handle invalid data.
+            User Story: As a user, I want only upcoming events with seats to be displayed.
+            Task:
+            • Use if-else to hide past or full events
+            • Loop through the event list and display using forEach()
+            • Wrap registration logic in try-catch to handle errors
+            */
+
+            const events = [
+                { name: "Community Meetup", date: "2024-07-15", seats: 50 },
+                { name: "Tech Workshop", date: "2024-06-01", seats: 0 },
+                { name: "Networking Event", date: "2024-08-20", seats: 30 }
+            ];
+            const today = new Date().toISOString().split('T')[0];
+            const eventList = document.getElementById('event-list');
+
+            events.forEach(event => {
+                if (event.date >= today && event.seats > 0) {
+                    const eventItem = document.createElement('div');
+                    eventItem.textContent = `${event.name} - ${event.date} (${event.seats} seats available)`;
+                    eventList.appendChild(eventItem);
+                } else {
+                    const eventItem = document.createElement('div');
+                    if (event.seats <= 0) {
+                        eventItem.textContent = `${event.name} - ${event.date} (FULL)`;
+                        eventItem.style.color = 'red';
+                    } else {
+                        eventItem.textContent = `${event.name} - ${event.date} (PAST)`;
+                        eventItem.style.color = 'gray';
+                    }
+                    eventList.appendChild(eventItem);
+                }
+            });
+
+            function register(event) {
+                try {
+                    if (event.seats <= 0) {
+                        throw new Error("No seats available");
+                    }
+                    event.seats--;
+                    console.log(`Registered for ${event.name}. Remaining seats: ${event.seats}`);
+                } catch (error) {
+                    console.error(error.message);
+                }
+            }
+
+            register(events[0]);
+            register(events[1]);
+        </script>
+    </body>
+</html>

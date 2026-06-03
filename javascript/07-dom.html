@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM - Dynamic Event Cards</title>
+    <style>
+        .event-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 12px 0;
+            background: #f9f9f9;
+        }
+        .event-card h3 { margin: 0 0 8px; }
+        .event-card button {
+            padding: 8px 16px;
+            background: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .event-card button:hover { background: #3730a3; }
+        .registered { background: #d1fae5; border-color: #22c55e; }
+    </style>
+</head>
+<body>
+    <h2>Event Cards</h2>
+    <div id="event-container"></div>
+
+    <script>
+        /*
+        7. DOM Manipulation
+        Scenario: Display all events dynamically on the webpage.
+        Objective: Render events using JS.
+        Task:
+        • Access DOM elements using querySelector()
+        • Create and append event cards using createElement()
+        • Update UI when user registers or cancels
+        */
+
+        const events = [
+            { name: "Summer Music Fest", date: "2024-07-15", seats: 10 },
+            { name: "Art Workshop", date: "2024-08-01", seats: 5 },
+            { name: "Jazz Night", date: "2024-09-10", seats: 0 }
+        ];
+
+        const container = document.querySelector('#event-container');
+
+        function renderEvents() {
+            container.innerHTML = '';
+            events.forEach((event, index) => {
+                const card = document.createElement('div');
+                card.className = 'event-card';
+                if (event.seats === 0) card.style.opacity = '0.5';
+
+                card.innerHTML = `
+                    <h3>${event.name}</h3>
+                    <p>Date: ${event.date} | Seats: ${event.seats}</p>
+                `;
+
+                const btn = document.createElement('button');
+                btn.textContent = event.seats > 0 ? 'Register' : 'Full';
+                btn.disabled = event.seats === 0;
+                btn.addEventListener('click', () => {
+                    if (event.seats > 0) {
+                        event.seats--;
+                        renderEvents();
+                    }
+                });
+
+                card.appendChild(btn);
+                container.appendChild(card);
+            });
+        }
+
+        renderEvents();
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays - Event Management</title>
+</head>
+<body>
+    <h2>Array Methods Demo</h2>
+    <div id="output"></div>
+
+    <script>
+        /*
+        6. Arrays and Methods
+        Scenario: Manage an array of all community events.
+        Objective: Use array methods for CRUD operations.
+        Task:
+        • Add new events using .push()
+        • Use .filter() to show only music events
+        • Use .map() to format display cards
+        */
+
+        const events = [
+            { name: "Summer Music Fest", category: "Music" },
+            { name: "Art Workshop", category: "Art" },
+            { name: "Jazz Night", category: "Music" }
+        ];
+
+        // push - add new events
+        events.push({ name: "Baking Class", category: "Workshop" });
+        events.push({ name: "Rock Concert", category: "Music" });
+
+        // filter - only music events
+        const musicEvents = events.filter(e => e.category === "Music");
+
+        // map - format display cards
+        const cards = events.map(e => `"${e.name}" (${e.category})`);
+
+        const output = document.getElementById('output');
+        output.innerHTML = `
+            <h3>All Events (${events.length})</h3>
+            <p>${cards.join('<br>')}</p>
+            <h3>Music Events Only (${musicEvents.length})</h3>
+            <p>${musicEvents.map(e => e.name).join('<br>')}</p>
+        `;
+
+        console.log('All events:', events);
+        console.log('Music events:', musicEvents);
+        console.log('Formatted cards:', cards);
+    </script>
+</body>
+</html>

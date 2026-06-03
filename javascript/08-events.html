@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling - Interactive Portal</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 700px; margin: 20px auto; padding: 0 16px; }
+        .event-item { padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; }
+        .event-item button { margin-left: 10px; padding: 4px 12px; cursor: pointer; }
+        input, select { padding: 8px; margin: 8px 0; width: 100%; box-sizing: border-box; }
+    </style>
+</head>
+<body>
+    <h2>Interactive Event Portal</h2>
+    <input type="text" id="searchBox" placeholder="Search events by name...">
+    <select id="categoryFilter">
+        <option value="all">All Categories</option>
+        <option value="Music">Music</option>
+        <option value="Art">Art</option>
+        <option value="Workshop">Workshop</option>
+    </select>
+    <div id="event-list"></div>
+
+    <script>
+        /*
+        8. Event Handling
+        Scenario: Add interactive elements like buttons and filters.
+        Objective: Respond to user actions.
+        Task:
+        • Use onclick for "Register" buttons
+        • Use onchange to filter events by category
+        • Use keydown to allow quick search by name
+        */
+
+        const events = [
+            { name: "Summer Music Fest", category: "Music", seats: 50 },
+            { name: "Art Workshop", category: "Art", seats: 30 },
+            { name: "Jazz Night", category: "Music", seats: 20 },
+            { name: "Baking Class", category: "Workshop", seats: 15 }
+        ];
+
+        const list = document.getElementById('event-list');
+        const searchBox = document.getElementById('searchBox');
+        const categoryFilter = document.getElementById('categoryFilter');
+
+        function render(filtered) {
+            list.innerHTML = '';
+            (filtered || events).forEach((event, i) => {
+                const div = document.createElement('div');
+                div.className = 'event-item';
+                div.innerHTML = `
+                    <strong>${event.name}</strong> (${event.category}) - ${event.seats} seats
+                    <button ${event.seats === 0 ? 'disabled' : ''}>
+                        ${event.seats > 0 ? 'Register' : 'Full'}
+                    </button>
+                `;
+                div.querySelector('button').onclick = function () {
+                    if (event.seats > 0) {
+                        event.seats--;
+                        alert(`Registered for ${event.name}!`);
+                        render(filter());
+                    }
+                };
+                list.appendChild(div);
+            });
+        }
+
+        function filter() {
+            const search = searchBox.value.toLowerCase();
+            const category = categoryFilter.value;
+            return events.filter(e => {
+                const matchName = e.name.toLowerCase().includes(search);
+                const matchCategory = category === 'all' || e.category === category;
+                return matchName && matchCategory;
+            });
+        }
+
+        searchBox.addEventListener('keydown', () => {
+            setTimeout(() => render(filter()), 0);
+        });
+
+        categoryFilter.onchange = () => render(filter());
+
+        render(events);
+    </script>
+</body>
+</html>

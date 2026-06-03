@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions - Event Operations</title>
+</head>
+<body>
+    <h2>Event Functions Demo</h2>
+    <div id="event-list"></div>
+    <div id="registration-count"></div>
+
+    <script>
+        /*
+        4. Functions, Scope, Closures, Higher-Order Functions
+        Scenario: Create reusable functions for event operations.
+        Objective: Encapsulate logic and use closures.
+        Task:
+        • Create addEvent(), registerUser(), filterEventsByCategory()
+        • Use closure to track total registrations for a category
+        • Pass callbacks to filter functions for dynamic search
+        */
+
+        const events = [];
+
+        function addEvent(name, category, seats) {
+            events.push({ name, category, seats, id: events.length + 1 });
+            renderEvents();
+        }
+
+        function registerUser(eventId) {
+            const event = events.find(e => e.id === eventId);
+            if (event && event.seats > 0) {
+                event.seats--;
+                trackRegistration(event.category);
+                renderEvents();
+                return true;
+            }
+            return false;
+        }
+
+        function filterEventsByCategory(category, callback) {
+            const filtered = events.filter(e => e.category === category);
+            callback(filtered);
+        }
+
+        function renderEvents() {
+            const list = document.getElementById('event-list');
+            list.innerHTML = '<h3>All Events</h3>';
+            events.forEach(e => {
+                const div = document.createElement('div');
+                div.textContent = `${e.name} (${e.category}) - ${e.seats} seats`;
+                const btn = document.createElement('button');
+                btn.textContent = 'Register';
+                btn.onclick = () => {
+                    const ok = registerUser(e.id);
+                    alert(ok ? `Registered for ${e.name}` : 'No seats available');
+                };
+                list.appendChild(div);
+                list.appendChild(btn);
+            });
+        }
+
+        // Closure to track registrations per category
+        function createCategoryTracker() {
+            const counts = {};
+            return function (category) {
+                counts[category] = (counts[category] || 0) + 1;
+                document.getElementById('registration-count').innerHTML =
+                    `<h3>Registration Counts</h3><pre>${JSON.stringify(counts, null, 2)}</pre>`;
+                return counts[category];
+            };
+        }
+
+        const trackRegistration = createCategoryTracker();
+
+        // Higher-order: filter with callback
+        function displayFiltered(category) {
+            filterEventsByCategory(category, (filtered) => {
+                console.log(`${category} events:`, filtered);
+                alert(`Found ${filtered.length} ${category} event(s)`);
+            });
+        }
+
+        addEvent("Summer Music Fest", "Music", 100);
+        addEvent("Art Workshop", "Art", 30);
+        addEvent("Jazz Night", "Music", 50);
+        addEvent("Painting Class", "Art", 20);
+    </script>
+</body>
+</html>

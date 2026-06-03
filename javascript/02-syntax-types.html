@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Syntax & Types - Event Registration</title>
+    </head>
+    <body>
+        <h2>Event Registration System</h2>
+        <div id="output"></div>
+
+        <script>
+            /*
+            2. Syntax, Data Types, and Operators
+            Scenario: Store event details like name, date, and available seats.
+            Objective: Use proper data types and operations.
+            Task:
+            • Use const for event name and date, let for seats
+            • Concatenate event info using template literals
+            • Use ++ or -- to manage seat count on registration
+            */
+
+            const eventName = "Community Meetup";
+            const eventDate = "2024-07-15";
+            let availableSeats = 50;
+
+            const output = document.getElementById('output');
+
+            const info = `Event: ${eventName}\nDate: ${eventDate}\nSeats available: ${availableSeats}`;
+            console.log(info);
+            output.textContent = info;
+
+            availableSeats--;
+            console.log(`After one registration, seats left: ${availableSeats}`);
+        </script>
+    </body>
+</html>

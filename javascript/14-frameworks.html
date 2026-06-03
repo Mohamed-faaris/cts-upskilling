@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery - Framework Demo</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 600px; margin: 20px auto; padding: 0 16px; }
+        .event-card {
+            padding: 16px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px;
+            background: #f9f9f9; display: flex; justify-content: space-between; align-items: center;
+        }
+        .event-card button { padding: 6px 14px; background: #4f46e5; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .event-card button:hover { background: #3730a3; }
+        #controls { margin: 16px 0; }
+        #controls button { padding: 8px 16px; margin-right: 8px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>jQuery Event Portal</h2>
+    <div id="controls">
+        <button id="showAllBtn">Show All</button>
+        <button id="hideAllBtn">Hide All</button>
+    </div>
+    <div id="event-container"></div>
+
+    <script>
+        /*
+        14. jQuery and JS Frameworks
+        Scenario: Use jQuery to simplify DOM tasks.
+        Objective: Understand and use jQuery.
+        Task:
+        • Use $('#registerBtn').click(...) to handle click events
+        • Use .fadeIn() and .fadeOut() for event cards
+        • Mention one benefit of moving to frameworks like React or Vue
+        */
+
+        const events = [
+            { name: "Summer Music Fest", seats: 50 },
+            { name: "Art Workshop", seats: 30 },
+            { name: "Jazz Night", seats: 20 }
+        ];
+
+        function renderEvents() {
+            const container = $('#event-container');
+            container.empty();
+
+            events.forEach((event, i) => {
+                const card = $(`
+                    <div class="event-card" id="card-${i}" style="display:none;">
+                        <span>${event.name} (${event.seats} seats)</span>
+                        <button class="register-btn">Register</button>
+                    </div>
+                `);
+
+                card.find('.register-btn').on('click', function () {
+                    if (event.seats > 0) {
+                        event.seats--;
+                        alert(`Registered for ${event.name}!`);
+                        renderEvents();
+                    } else {
+                        alert('No seats available');
+                    }
+                });
+
+                container.append(card);
+                card.fadeIn(400);
+            });
+        }
+
+        $('#showAllBtn').on('click', function () {
+            $('.event-card').fadeIn(400);
+        });
+
+        $('#hideAllBtn').on('click', function () {
+            $('.event-card').fadeOut(400);
+        });
+
+        $(document).ready(function () {
+            renderEvents();
+        });
+
+        /*
+        Benefit of frameworks like React or Vue:
+        - Component-based architecture: reusable, encapsulated UI pieces
+        - Virtual DOM for efficient re-rendering (no manual DOM updates)
+        - Declarative UI: describe what to show, not how to show it
+        - Built-in state management, tooling, and ecosystem
+        */
+    </script>
+</body>
+</html>
