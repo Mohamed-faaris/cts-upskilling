@@ -39,3 +39,17 @@ docker exec -it mysql-events mysql -u root -p
 | **Python (mysql-connector)** | `mysql.connector.connect(host="127.0.0.1", user="root", password="root", database="event_management")` |
 | **Node.js (mysql2)** | `mysql.createConnection({host:"127.0.0.1", user:"root", password:"root", database:"event_management"})` |
 | **DBeaver / MySQL Workbench** | Host: `127.0.0.1`, Port: `3306`, User: `root`, Password: `root`, Database: `event_management` |
+
+## Exercises
+
+SQL exercises are in the `exercises/` directory. Run any exercise against the running container:
+
+```bash
+docker exec -i mysql-events mysql -u root -proot event_management < exercises/01-upcoming-events.sql
+```
+
+Or run all exercises:
+
+```bash
+for f in exercises/*.sql; do echo "=== $f ===" && docker exec -i mysql-events mysql -u root -proot event_management < "$f"; done
+```
