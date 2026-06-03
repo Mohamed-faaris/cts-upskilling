@@ -19,3 +19,8 @@ pnpm-debug.log*
 *.swp
 
 *.class
+
+node_modules/
+dist/
+build/
+coverage/
