@@ -4,17 +4,85 @@
     <meta charset="UTF-8">
     <title>Help - Community Event Portal</title>
     <style>
+        :root {
+            --primary: #2c3e50;
+            --bg: #f0f2f5;
+            --card-bg: #ffffff;
+            --text: #333;
+            --text-light: #666;
+            --border: #e0e0e0;
+            --radius: 8px;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
         }
-        h1 {
-            color: #2c3e50;
-        }
+
         .content {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 40px auto;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 40px;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #4CAF50;
+            display: inline-block;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin: 24px 0 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        ul li {
+            margin-bottom: 6px;
+            color: var(--text-light);
+        }
+
+        p {
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 24px 0;
+        }
+
+        small {
+            color: var(--text-light);
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                margin: 16px;
+                padding: 24px 20px;
+            }
         }
     </style>
 </head>
