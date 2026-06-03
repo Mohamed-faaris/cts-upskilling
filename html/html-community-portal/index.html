@@ -3,97 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Local Community Event Portal</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        /* Internal CSS for Exercise 3 and beyond */
-        #welcomeBanner {
-            background-color: blue;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .highlight {
-            background-color: yellow;
-            font-weight: bold;
-        }
-
-        /* Style for image gallery */
-        .gallery-img {
-            border: 2px solid #ccc;
-            padding: 5px;
-            width: 150px;
-            height: 100px;
-            object-fit: cover;
-        }
-
-        /* Style for form */
-        form {
-            max-width: 500px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        form label {
-            display: block;
-            margin-top: 10px;
-        }
-
-        form input,
-        form select,
-        form textarea {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            box-sizing: border-box;
-        }
-
-        form button {
-            margin-top: 15px;
-            padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        form button:hover {
-            background-color: #45a049;
-        }
-
-        /* Style for video container */
-        .video-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        /* Style for geolocation button */
-        #geolocateBtn {
-            padding: 10px 15px;
-            background-color: #008CBA;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        #geolocateBtn:hover {
-            background-color: #005f73;
-        }
-
-        /* Style for clear preferences button */
-        #clearPrefsBtn {
-            padding: 10px 15px;
-            background-color: #f44336;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        #clearPrefsBtn:hover {
-            background-color: #d32f2f;
+        /* Internal CSS - Exercise 1: Body background */
+        body {
+            background-color: #e8f4f8;
         }
     </style>
 </head>
@@ -101,7 +17,7 @@
 <body>
     <!-- Navigation -->
     <header>
-        <div id="welcomeBanner">
+        <div id="mainHeader">
             <h1>Welcome to the Community Event Portal!</h1>
             <p><span style="color: red; font-weight: bold;">Special Offer: Early bird discounts for all events this
                     month!</span></p>
@@ -110,10 +26,12 @@
     </header>
 
     <nav>
-        <a href="#home">Home</a> |
-        <a href="#events">Events</a> |
-        <a href="#contact">Contact</a> |
-        <a href="help.html" target="_blank">Help</a>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="help.html" target="_blank">Help</a></li>
+        </ul>
     </nav>
 
     <!-- Main Content -->
@@ -123,63 +41,115 @@
             <h2>Upcoming Community Events</h2>
             <p>Welcome to our community portal! Check out our events calendar and register for activities that interest
                 you.</p>
+
+            <!-- Exercise 9: Multi-column News Article -->
+            <div class="news-article">
+                <h3>Community Bulletin</h3>
+                <p>The annual Community Festival is just around the corner! Join us for a weekend of fun, food, and entertainment. This year we have expanded our venue to accommodate more stalls and activities. Local artists will showcase their work, and there will be live music throughout the event.</p>
+                <p>Volunteers are needed for setup and coordination. If you can spare a few hours, please sign up at the community center. We also welcome sponsorship from local businesses. Your support helps keep this event free for all residents. Let us come together to celebrate our vibrant community!</p>
+            </div>
+
+            <!-- Exercise 9: admin events table -->
+            <h3>Events at a Glance</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Venue</th>
+                        <th>Entry Fee</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Community Festival</td>
+                        <td>June 15</td>
+                        <td>10:00 AM</td>
+                        <td>Central Park</td>
+                        <td>Free</td>
+                    </tr>
+                    <tr>
+                        <td>Art Exhibition</td>
+                        <td>June 22</td>
+                        <td>11:00 AM</td>
+                        <td>City Gallery</td>
+                        <td>$5</td>
+                    </tr>
+                    <tr>
+                        <td>Music Concert</td>
+                        <td>June 29</td>
+                        <td>6:00 PM</td>
+                        <td>Amphitheater</td>
+                        <td>$15</td>
+                    </tr>
+                    <tr>
+                        <td>Sports Tournament</td>
+                        <td>July 6</td>
+                        <td>8:00 AM</td>
+                        <td>Sports Complex</td>
+                        <td>$8</td>
+                    </tr>
+                    <tr>
+                        <td>Food Fair</td>
+                        <td>July 13</td>
+                        <td>12:00 PM</td>
+                        <td>Downtown Plaza</td>
+                        <td>$12</td>
+                    </tr>
+                    <tr>
+                        <td>Workshop Series</td>
+                        <td>July 20</td>
+                        <td>9:00 AM</td>
+                        <td>Community Hall</td>
+                        <td>$20</td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
 
         <!-- Events Section -->
         <section id="events">
             <h2>Event Gallery</h2>
-            <!-- Image Gallery (Exercise 4) -->
-            <table>
-                <tr>
-                    <td>
-                        <img src="../images/event1.jpg" alt="Community Festival" title="Community Festival"
-                            class="gallery-img">
-                        <br>
-                        <caption>Community Festival - June 15</caption>
-                    </td>
-                    <td>
-                        <img src="../images/event2.jpg" alt="Art Exhibition" title="Art Exhibition" class="gallery-img">
-                        <br>
-                        <caption>Art Exhibition - June 22</caption>
-                    </td>
-                    <td>
-                        <img src="../images/event3.jpg" alt="Music Concert" title="Music Concert" class="gallery-img">
-                        <br>
-                        <caption>Music Concert - June 29</caption>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="../images/event4.jpg" alt="Sports Tournament" title="Sports Tournament"
-                            class="gallery-img">
-                        <br>
-                        <caption>Sports Tournament - July 6</caption>
-                    </td>
-                    <td>
-                        <img src="../images/event5.jpg" alt="Food Fair" title="Food Fair" class="gallery-img">
-                        <br>
-                        <caption>Food Fair - July 13</caption>
-                    </td>
-                    <td>
-                        <img src="../images/event6.jpg" alt="Workshop Series" title="Workshop Series"
-                            class="gallery-img">
-                        <br>
-                        <caption>Workshop Series - July 20</caption>
-                    </td>
-                </tr>
-            </table>
+            <!-- Image Gallery -->
+            <div class="gallery-grid">
+                <div class="eventCard">
+                    <img src="assets/images/event1.jpg" alt="Community Festival" title="Community Festival" class="gallery-img">
+                    <p>Community Festival - June 15</p>
+                </div>
+                <div class="eventCard">
+                    <img src="assets/images/event2.jpg" alt="Art Exhibition" title="Art Exhibition" class="gallery-img">
+                    <p>Art Exhibition - June 22</p>
+                </div>
+                <div class="eventCard">
+                    <img src="assets/images/event3.jpg" alt="Music Concert" title="Music Concert" class="gallery-img">
+                    <p>Music Concert - June 29</p>
+                </div>
+                <div class="eventCard">
+                    <img src="assets/images/event4.jpg" alt="Sports Tournament" title="Sports Tournament" class="gallery-img">
+                    <p>Sports Tournament - July 6</p>
+                </div>
+                <div class="eventCard">
+                    <img src="assets/images/event5.jpg" alt="Food Fair" title="Food Fair" class="gallery-img">
+                    <p>Food Fair - July 13</p>
+                </div>
+                <div class="eventCard">
+                    <img src="assets/images/event6.jpg" alt="Workshop Series" title="Workshop Series" class="gallery-img">
+                    <p>Workshop Series - July 20</p>
+                </div>
+            </div>
 
-            <!-- Video Invite (Exercise 7) -->
+            <!-- Video Invite -->
             <div class="video-container">
                 <h2>Event Promo Video</h2>
                 <video width="400" controls>
-                    <source src="../videos/promo.mp4" type="video/mp4">
+                    <source src="assets/videos/promo.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 <p id="videoMessage"></p>
             </div>
 
-            <!-- Event Registration Form (Exercise 5) -->
+            <!-- Event Registration Form -->
             <h2>Register for an Event</h2>
             <form id="eventForm">
                 <label for="name">Name:</label>
@@ -209,7 +179,7 @@
             </form>
             <output id="formOutput"></output>
 
-            <!-- Geolocation (Exercise 9) -->
+            <!-- Geolocation -->
             <h2>Find Nearby Events</h2>
             <button id="geolocateBtn">Find Nearby Events</button>
             <div id="geolocationOutput"></div>
@@ -220,33 +190,33 @@
             <h2>Contact Us</h2>
             <p>Have questions? Reach out to us!</p>
 
-            <!-- Event Feedback with Events Handling (Exercise 6) -->
+            <!-- Feedback Form -->
             <h3>Feedback Form</h3>
             <form id="feedbackForm">
-                <label for="phone">Phone Number:</li>
-                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
 
-                    <label for="feedbackEvent">Select Event for Fee Info:</label>
-                    <select id="feedbackEvent" name="feedbackEvent">
-                        <option value="">Select an event</option>
-                        <option value="festival">Festival ($10)</option>
-                        <option value="exhibition">Exhibition ($5)</option>
-                        <option value="concert">Concert ($15)</option>
-                        <option value="sports">Sports ($8)</option>
-                        <option value="food">Food Fair ($12)</option>
-                        <option value="workshop">Workshop ($20)</option>
-                    </select>
-                    <p id="feeDisplay"></p>
+                <label for="feedbackEvent">Select Event for Fee Info:</label>
+                <select id="feedbackEvent" name="feedbackEvent">
+                    <option value="">Select an event</option>
+                    <option value="festival">Festival ($10)</option>
+                    <option value="exhibition">Exhibition ($5)</option>
+                    <option value="concert">Concert ($15)</option>
+                    <option value="sports">Sports ($8)</option>
+                    <option value="food">Food Fair ($12)</option>
+                    <option value="workshop">Workshop ($20)</option>
+                </select>
+                <p id="feeDisplay"></p>
 
-                    <label for="feedback">Feedback:</label>
-                    <textarea id="feedback" name="feedback" placeholder="Share your thoughts..." rows="4"></textarea>
-                    <p>Character count: <span id="charCount">0</span>/500</p>
+                <label for="feedback">Feedback:</label>
+                <textarea id="feedback" name="feedback" placeholder="Share your thoughts..." rows="4"></textarea>
+                <p>Character count: <span id="charCount">0</span>/500</p>
 
-                    <button type="submit">Submit Feedback</button>
+                <button type="submit">Submit Feedback</button>
             </form>
             <p id="feedbackConfirmation"></p>
 
-            <!-- Saving User Preferences (Exercise 8) -->
+            <!-- Saving User Preferences -->
             <h3>Your Preferences</h3>
             <p>Preferred event type: <span id="preferredEvent">Not set</span></p>
             <button id="clearPrefsBtn">Clear Preferences</button>
@@ -273,7 +243,6 @@
         document.getElementById('feedbackEvent').addEventListener('change', function () {
             const feeDisplay = document.getElementById('feeDisplay');
             if (this.value) {
-                // Extract fee from option text (simplistic approach)
                 const selectedOption = this.options[this.selectedIndex];
                 const feeMatch = selectedOption.text.match(/\$(\d+)/);
                 if (feeMatch) {
@@ -288,7 +257,7 @@
 
         // Show confirmation on submit button click
         document.getElementById('feedbackForm').addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevent actual submission
+            e.preventDefault();
             const feedback = document.getElementById('feedback').value;
             if (feedback.trim() !== '') {
                 document.getElementById('feedbackConfirmation').textContent = 'Thank you for your feedback!';
@@ -305,7 +274,6 @@
             img.addEventListener('dblclick', function () {
                 const currentWidth = this.width;
                 this.width = currentWidth * 1.5;
-                // Reset after 2 seconds
                 setTimeout(() => {
                     this.width = currentWidth;
                 }, 2000);
@@ -322,7 +290,7 @@
             }
         });
 
-        // Exercise 7: Video Invite with Media Events
+        // Video Media Events
         const video = document.querySelector('video');
         const videoMessage = document.getElementById('videoMessage');
         video.addEventListener('canplay', function () {
@@ -333,18 +301,17 @@
         // Warn if trying to leave form page unfinished
         window.addEventListener('beforeunload', function (e) {
             const form = document.getElementById('eventForm');
-            // Check if form has any filled values
             const isFilled = Array.from(form.elements).some(el =>
                 el.value !== '' && el.type !== 'button' && el.type !== 'submit'
             );
             if (isFilled) {
                 const confirmationMessage = 'You have unsaved changes. Are sure you want to leave?';
-                e.returnValue = confirmationMessage; // Standard for most browsers
-                return confirmationMessage; // For Safari
+                e.returnValue = confirmationMessage;
+                return confirmationMessage;
             }
         });
 
-        // Exercise 5: Event Registration Form - Display confirmation message
+        // Event Registration Form - Display confirmation message
         document.getElementById('eventForm').addEventListener('submit', function (e) {
             e.preventDefault();
             const name = document.getElementById('name').value;
@@ -353,18 +320,15 @@
             const output = document.getElementById('formOutput');
             output.textContent = `Thank you, ${name}! You are registered for ${eventType} on ${date}.`;
             output.style.color = 'green';
-            // Save event type to localStorage (Exercise 8)
             localStorage.setItem('preferredEventType', eventType);
             sessionStorage.setItem('lastEventType', eventType);
         });
 
-        // Exercise 8: Saving User Preferences
-        // On load, retrieve and pre-select preferred event type
+        // Saving User Preferences
         document.addEventListener('DOMContentLoaded', function () {
             const preferredEventType = localStorage.getItem('preferredEventType');
             if (preferredEventType) {
                 document.getElementById('preferredEvent').textContent = preferredEventType;
-                // Also try to set in the form if it exists
                 const eventTypeSelect = document.getElementById('eventType');
                 if (eventTypeSelect) {
                     for (let i = 0; i < eventTypeSelect.options.length; i++) {
@@ -374,13 +338,11 @@
                         }
                     }
                 }
-                // Also set in feedback form if applicable
                 const feedbackEventSelect = document.getElementById('feedbackEvent');
                 if (feedbackEventSelect) {
                     for (let i = 0; i < feedbackEventSelect.options.length; i++) {
                         if (feedbackEventSelect.options[i].value === preferredEventType) {
                             feedbackEventSelect.selectedIndex = i;
-                            // Trigger change event to update fee display
                             feedbackEventSelect.dispatchEvent(new Event('change'));
                             break;
                         }
@@ -388,12 +350,10 @@
                 }
             }
 
-            // Clear Preferences button
             document.getElementById('clearPrefsBtn').addEventListener('click', function () {
                 localStorage.removeItem('preferredEventType');
                 sessionStorage.removeItem('lastEventType');
                 document.getElementById('preferredEvent').textContent = 'Not set';
-                // Reset forms if needed
                 const eventTypeSelect = document.getElementById('eventType');
                 if (eventTypeSelect) eventTypeSelect.selectedIndex = 0;
                 const feedbackEventSelect = document.getElementById('feedbackEvent');
@@ -402,10 +362,10 @@
             });
         });
 
-        // Exercise 9: Geolocation for Event Mapping
+        // Geolocation for Event Mapping
         document.getElementById('geolocateBtn').addEventListener('click', function () {
             const output = document.getElementById('geolocationOutput');
-            if (navigator.geolo cation) {
+            if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     function (position) {
                         output.innerHTML = `
@@ -413,7 +373,6 @@
                             <p>Longitude: ${position.coords.longitude}</p>
                             <p>Accuracy: ${position.coords.accuracy} meters</p>
                         `;
-                        // In a real app, you would use these coordinates to find nearby events
                         output.innerHTML += '<p>Finding nearby events based on your location...</p>';
                     },
                     function (error) {
@@ -443,8 +402,6 @@
             }
         });
 
-        // Exercise 10: Debugging with Chrome DevTools
-        // We've left breakpoints-friendly code and console logs can be added as needed
         console.log('Portal initialized');
     </script>
 </body>
